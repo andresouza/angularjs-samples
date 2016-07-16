@@ -1,0 +1,80 @@
+app.config(function ($routeProvider, $locationProvider) {
+  $locationProvider.html5Mode(true);
+  $routeProvider
+    .when("/",
+      {
+        templateUrl: "<%= asset_path('noticias/index.html') %>",
+        controller: "articleCtrl"
+      })
+    .when("/login",
+      {
+        templateUrl: "<%= asset_path('login/index.html') %>",
+        controller: "loginCtrl"
+      })
+    .when("/esqueci-a-senha",
+      {
+        templateUrl: "<%= asset_path('login/esqueci-a-senha.html') %>",
+        controller: "forgotCtrl"
+      })
+    .when("/cadastro",
+      {
+        templateUrl: "<%= asset_path('cadastro/index.html') %>",
+        controller: "registerCtrl"
+      })
+    .when("/noticias/:category",
+      {
+        templateUrl: "<%= asset_path('noticias/index.html') %>",
+        controller: "articleCtrl"
+      })
+    .when("/noticias/:category/:slug",
+      {
+        templateUrl: "<%= asset_path('noticias/index.html') %>",
+        controller: "articleCtrl"
+      })
+    .when("/ranking/:type", 
+      {
+        templateUrl: function (params) {
+          if (params.type == 'regional')
+            return "<%= asset_path('ranking/regional.html') %>";
+          else if (params.type == 'regional-trimestre')
+            return "<%= asset_path('ranking/regional-trimestre.html') %>";
+          else if (params.type == 'gerente')
+            return "<%= asset_path('ranking/gerente.html') %>";
+          else if (params.type == 'representantes')
+            return "<%= asset_path('ranking/master/representantes.html') %>";
+          else if (params.type == 'representantes-trimestre')
+            return "<%= asset_path('ranking/master/representantes-trimestre.html') %>";
+          else if (params.type == 'gerentes')
+            return "<%= asset_path('ranking/master/gerente.html') %>";
+          else if (params.type == 'trimestre')
+            return "<%= asset_path('ranking/geral-trimestre.html') %>";
+          else
+            return "<%= asset_path('ranking/geral.html') %>";
+        },
+        controller: "rankingCtrl"
+      })
+    .when("/insignias",
+      {
+        templateUrl: "<%= asset_path('insignias/index.html') %>",
+        controller: "insigniaCtrl"
+      })
+    .when("/treinamento",
+      {
+        templateUrl: "<%= asset_path('treinamento/index.html') %>",
+        controller: "tutorialCtrl"
+      })
+    .when("/treinamento/:slug",
+      {
+        templateUrl: "<%= asset_path('treinamento/index.html') %>",
+        controller: "tutorialCtrl"
+      })
+    .when("/minha-conta",
+      {
+        templateUrl: "<%= asset_path('minha-conta/index.html') %>",
+        controller: "registerCtrl"
+      })
+    .otherwise(
+      {
+        redirectTo: "/"
+      });
+})
